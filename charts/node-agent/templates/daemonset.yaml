@@ -32,6 +32,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           command: ["coroot-node-agent", "--cgroupfs-root", "/host/sys/fs/cgroup"]
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --listen=:localhost:6060
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           ports:
